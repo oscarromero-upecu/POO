@@ -1,4 +1,6 @@
 ﻿using POO.DATOS;
+using POO.Interface;
+using POO.Repositorio;
 using System;
 
 namespace POO
@@ -7,7 +9,11 @@ namespace POO
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"Hola soy estudiente");
+            RepositorioEstudiante Estudiante = new RepositorioEstudiante();
+            RepositorioAsignatura Asignaturas = new RepositorioAsignatura();
+
+            Console.WriteLine($"Asignatura: {Asignaturas.IngresarAsignatura("Ingles")}");
+            Console.WriteLine($"Estado de Materia: { Asignaturas.EstadoAsignatura(10)}");
         }
     }
 }

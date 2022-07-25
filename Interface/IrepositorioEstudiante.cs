@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace POO.Interface
 {
     public interface IrepositorioEstudiante
     {
-        string RegistrarEstudiante(int id, string Nombre, string Apellido);
+        string RegistrarEstudiante(int id, string Nombre, string Apellido, DateTime fechaIngreso);
     }
 }

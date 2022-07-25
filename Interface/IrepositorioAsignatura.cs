@@ -8,7 +8,8 @@ namespace POO.Interface
 {
     public interface IrepositorioAsignatura
     {
-        string IngresarAsignatura(string Asignatura, int nota);
+        string IngresarAsignatura(string Asignatura);
+        string EstadoAsignatura(int nota);
 
     }
 }
