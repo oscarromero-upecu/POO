@@ -1,15 +1,8 @@
-﻿using POO.DATOS;
-using POO.Interface;
-using POO.NOTAS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using POO.Interface;
 
 namespace POO.Repositorio
 {
-    public class RepositorioAsignatura : IrepositorioAsignatura
+    public class Asignatura : IAsignatura
     {
         private string nombremateria;
         private string estadomateria;
@@ -35,6 +28,11 @@ namespace POO.Repositorio
             {
                 this.estadomateria = value;
             }
+        }
+
+        public Asignatura()
+        {
+            NombreMateria = "Ingles";
         }
 
         public string IngresarAsignatura(string Asignatura)

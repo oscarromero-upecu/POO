@@ -1,6 +1,4 @@
-﻿using POO.DATOS;
-using POO.Interface;
-using POO.Repositorio;
+﻿using POO.Repositorio;
 using System;
 
 namespace POO
@@ -9,11 +7,15 @@ namespace POO
     {
         static void Main(string[] args)
         {
-            RepositorioEstudiante Estudiante = new RepositorioEstudiante();
-            RepositorioAsignatura Asignaturas = new RepositorioAsignatura();
-
-            Console.WriteLine($"Asignatura: {Asignaturas.IngresarAsignatura("Ingles")}");
-            Console.WriteLine($"Estado de Materia: { Asignaturas.EstadoAsignatura(10)}");
+            try
+            {
+                Estudiante EstudianteAprobado = new Estudiante("Oscar Romero",19,DateTime.Now);
+                Console.WriteLine(EstudianteAprobado.Notas.Nota);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
