@@ -1,53 +1,81 @@
-﻿using POO.Interface;
+﻿using POO.Enum;
+using POO.Interface;
+using POO.Metodos;
+using System;
 
 namespace POO.Repositorio
 {
-    public class Asignatura : IAsignatura
+    public class Asignatura:ISaludo
     {
-        private string nombremateria;
-        private string estadomateria;
+        private Asignaturas asignaturas;
+        private EstadoAsignatura estadoAsignatura;
+        private int nota;
 
-        public string NombreMateria
+        public int Nota
         {
             get
             {
-                return nombremateria;
+                return nota;
             }
             set
             {
-                this.nombremateria = value;
-            }
-        }
-        public string EstadoMateria
-        {
-            get
-            {
-                return estadomateria;
-            }
-            set
-            {
-                this.estadomateria = value;
+                //ASIGNA LA NOTA SI CUMPLE LA CONDICION
+                if (nota <= 11)
+                    this.nota = value;
+                else
+                    //CASO CONTRARIO QUE ME DE UN MENSAJE DE ERROR EXCEPTION
+                    throw new ArgumentOutOfRangeException("La nota es sobre 10");
             }
         }
 
+        public EstadoAsignatura EstadoAsignatura
+        {
+            get
+            {
+                return estadoAsignatura;
+            }
+            set
+            {
+                this.estadoAsignatura = value;
+            }
+        }
+        public Asignaturas Asignaturas
+        {
+            get
+            {
+                return asignaturas;
+            }
+            set
+            {
+                this.asignaturas = value;
+            }
+        }
+
+        //CONSTRUCTORES
+        #region CONSTRUCTORES
         public Asignatura()
+        { }
+
+        public Asignatura(string nombreapellido, int edad)
+            : this(Asignaturas.Default, 9, EstadoAsignatura.Default)
         {
-            NombreMateria = "Ingles";
+        }
+        public Asignatura(Asignaturas nombreMateria, int nota, EstadoAsignatura estado)
+        {
+            Asignaturas = nombreMateria;
+            this.Nota = nota;
+            EstadoAsignatura = estado;
         }
 
-        public string IngresarAsignatura(string Asignatura)
+        #endregion
+
+        public string TraerAsignaturas()
         {
-            return NombreMateria = Asignatura;
+            return ($"Hola manteria 1: {Asignaturas.Ingles}" +
+                $" manteria 2: {Asignaturas.Programacion}"+
+                $" manteria 2: {Asignaturas.Matematicas}"+
+                $" manteria 2: {Asignaturas.Literatura}");
         }
-        
-        public string EstadoAsignatura(int nota)
-        {
-            if (nota >= 7)
-            {
-                EstadoMateria = "APROBADO";
-            }
-             else EstadoMateria= "REPROBADO";
-            return EstadoMateria;
-         }
+
     }
 }

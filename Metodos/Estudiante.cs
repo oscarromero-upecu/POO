@@ -1,30 +1,57 @@
-﻿using POO.Metodos;
+﻿using POO.Enum;
+using POO.Interface;
+using POO.Metodos;
 using System;
 
 namespace POO.Repositorio
 {
-    public class Estudiante
+    public class Estudiante : Asignatura
     {
-        public static int Id;
-        private string nombreapellido;
+        //CAMPOS
+        #region CAMPOS PRIVATE/STATIC/CONST
+        //MIEMBRO STATIC PERMITE SER ACCEDIDO EN CUANQUIER MOMENTO DEL PROYECTO SIN 
+        //SIN LA NECESIDAD DE UNA INSTANCIA
+        public static int IdContador;
+
+        //CONST SE DEBE ESCRIBIR EN MAYUSCULAS Y ASIGNAR UN VALOR
+        private const string DEFAULT_NOMBRE = "FRANCISCO PEREZ";
+        private const int DEFAULT_EDAD = 19;
+
+        //PRIVATE SON CAMPOS QUE ES SOLO PARA LA CLASE
+        private int Id;
+        private string nombreEstudiante;
         private int edad;
         private DateTime fechaingreso;
-        private Notas notas;
-        private Asignatura asignatura;
+        private Generos generos;
+        #endregion
 
         //PROPIEDADES
         #region PROPIEDADES
-        public string Nombre
+        public string NombreEstudiante
         {
             get
             {
                 //RETORNA EL CAMPO
-                return nombreapellido;
+                return nombreEstudiante;
             }
             set
             {
-                //ASIGNA EL VALORE DEL CAMPO
-                this.nombreapellido = value;
+                //ASIGNA EL VALOR DEL CAMPO
+                this.nombreEstudiante = value;
+            }
+        }
+
+        public Generos Genero
+        {
+            get
+            {
+                //RETORNA 
+                return generos;
+            }
+            set
+            {
+                //ASIGNA EL VALOR DEL CAMPO
+                this.generos = value;
             }
         }
         public int Edad
@@ -43,6 +70,24 @@ namespace POO.Repositorio
                     throw new ArgumentOutOfRangeException("El estudiante debe ser mayor de edad");
             }
         }
+            public int ID
+        {
+            get
+            {
+                return Id;
+            }
+            //SET PRIVADO QUE SOLO AL MOMENTO DE CREAR ASIGNE VALOR Y
+            //QUE EN EL MAIN NO PERMITA MODIFICAR EL VALOR
+            private set
+            {
+                //ASIGNA EL VALOR SI CUMPLE LA CONDICION
+                if (Id >= 0)
+                    this.Id = value;
+                else
+                    //CASO CONTRARIO QUE ME DE UN MENSAJE DE ERROR EXCEPTION
+                    throw new ArgumentOutOfRangeException("ID incorrecto");
+            }
+        }
         public DateTime FechaDeIngreso
         {
             get
@@ -54,54 +99,49 @@ namespace POO.Repositorio
                 this.fechaingreso = value;
             }
         }
-        public Notas Notas
-        {
-            get
-            {
-                return notas;
-            }
-            set
-            {
-                this.notas = value;
-            }
-        }
-            public Asignatura Asignatura
-        {
-            get
-            {
-                return asignatura;
-            }
-            set
-            {
-                this.asignatura = value;
-            }
-        }
         #endregion
 
         //CONSTRUCTORES
         #region CONSTRUCTORES
+
         public Estudiante()
-            : this("Fernando Perez", 18)
+            : this(DEFAULT_NOMBRE, DEFAULT_EDAD)
         { }
         
         public Estudiante(string nombreapellido, int edad)
-            :this (nombreapellido,edad,DateTime.Now)
+            :this (nombreapellido,edad,DateTime.Now, Generos.Default, Asignaturas.Default, 9, EstadoAsignatura.Default)
         {
         }
-        public Estudiante(string nombreapellido, int edad, DateTime fechaingreso)
+
+        public Estudiante(string nombreapellido, int edad, DateTime fechaingreso, Generos genero,Asignaturas nombreMateria, int nota, EstadoAsignatura estado)
+          : base(Asignaturas.Default, 9, EstadoAsignatura.Default)
         {
-            Nombre = nombreapellido;
+            NombreEstudiante = nombreapellido;
             this.edad = edad;
             FechaDeIngreso = fechaingreso;
-            Notas = new Notas();
-            Asignatura = new Asignatura();
+            IdContador++;
+            Genero = genero;
+            Asignaturas = nombreMateria;
+            Nota = nota;
+            EstadoAsignatura = estado;
+            ID = IdContador;
         }
         #endregion
+
         //METODOS
         #region METODOS
+        //VACIO
         public void Saludos (string nombre)
         {
-            Console.WriteLine($"Bienvenido estudiante{nombre} edad: {Edad}");
+            Console.WriteLine($"Bienvenido estudiante: {nombre}/  edad: {Edad}");
+        }
+        //METODO STATICO PERMITE SER LLAMADO SIN NECESIDAD DE UNA INSTANCIA; PERO
+        //SOLO ACEPTA CAMPOS O PROPIEDADES QUE NO DEPENDAN DE UNA INSTANCIA COMO UNA CONST O STATIC
+        // O TAMBIEN TODOS LOS PARAMETOS O ARGUMENTOS QUE SE INCLUYA EN EL METODO
+        public static void ImprimirValoresConstantes()
+        {
+            Console.WriteLine($"Constante de Nombre: {DEFAULT_NOMBRE}"
+                + $"Constante de edad: {DEFAULT_EDAD}");
         }
         #endregion
 

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace POO.Interface
 {
-    public interface IEstudiante
+    public interface ISaludo
     {
-        string RegistrarEstudiante(int id, string Nombre, string Apellido, DateTime fechaIngreso);
+        string TraerAsignaturas();
     }
 }
