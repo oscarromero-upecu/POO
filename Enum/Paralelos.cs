@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POO.Interface
+namespace POO.Enum
 {
-    public interface ISaludo
+    public enum Paralelos
     {
-        string TraerAsignaturas();
+        Default,
+        A,
+        B,
+        C,
     }
 }

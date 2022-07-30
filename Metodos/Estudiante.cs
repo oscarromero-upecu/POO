@@ -5,7 +5,7 @@ using System;
 
 namespace POO.Repositorio
 {
-    public class Estudiante : Asignatura
+    public class Estudiante : Asignatura //HEREDA LA CLASE ASIGNATURA
     {
         //CAMPOS
         #region CAMPOS PRIVATE/STATIC/CONST
@@ -114,6 +114,7 @@ namespace POO.Repositorio
         }
 
         public Estudiante(string nombreapellido, int edad, DateTime fechaingreso, Generos genero,Asignaturas nombreMateria, int nota, EstadoAsignatura estado)
+            //BASE PERMITE ACCEDER AL CONSTRUCTOR PUBLICO DE ASIGNATURA
           : base(Asignaturas.Default, 9, EstadoAsignatura.Default)
         {
             NombreEstudiante = nombreapellido;
@@ -130,10 +131,10 @@ namespace POO.Repositorio
 
         //METODOS
         #region METODOS
-        //VACIO
-        public void Saludos (string nombre)
+        //VIRTUAL ES EL METODO QUE PUEDE SER LLAMADO Y SE PUEDE SOBRESCIBIR
+        public virtual void Saludos ()
         {
-            Console.WriteLine($"Bienvenido estudiante: {nombre}/  edad: {Edad}");
+            Console.WriteLine($"Bienvenido estudiante: {NombreEstudiante}/  edad: {Edad}");
         }
         //METODO STATICO PERMITE SER LLAMADO SIN NECESIDAD DE UNA INSTANCIA; PERO
         //SOLO ACEPTA CAMPOS O PROPIEDADES QUE NO DEPENDAN DE UNA INSTANCIA COMO UNA CONST O STATIC

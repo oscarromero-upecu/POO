@@ -5,12 +5,17 @@ using System;
 
 namespace POO.Repositorio
 {
-    public class Asignatura:ISaludo
+    public class Asignatura : IAsignatura
     {
+        //CAMPOS
+        #region CAMPOS
         private Asignaturas asignaturas;
         private EstadoAsignatura estadoAsignatura;
         private int nota;
+        #endregion
 
+        //PROPIEDADES
+        #region PROPIEDADES
         public int Nota
         {
             get
@@ -27,7 +32,6 @@ namespace POO.Repositorio
                     throw new ArgumentOutOfRangeException("La nota es sobre 10");
             }
         }
-
         public EstadoAsignatura EstadoAsignatura
         {
             get
@@ -36,7 +40,11 @@ namespace POO.Repositorio
             }
             set
             {
-                this.estadoAsignatura = value;
+                  if (Nota >=7)
+            
+                    this.estadoAsignatura = EstadoAsignatura.Aprobado;
+                else
+                this.estadoAsignatura = EstadoAsignatura.Reprobado;              
             }
         }
         public Asignaturas Asignaturas
@@ -50,6 +58,7 @@ namespace POO.Repositorio
                 this.asignaturas = value;
             }
         }
+        #endregion
 
         //CONSTRUCTORES
         #region CONSTRUCTORES
@@ -69,13 +78,22 @@ namespace POO.Repositorio
 
         #endregion
 
+        //METODOS
+        #region METODOS
+        // TRAE EL METODO DE LA INTERFAZ
         public string TraerAsignaturas()
         {
-            return ($"Hola manteria 1: {Asignaturas.Ingles}" +
-                $" manteria 2: {Asignaturas.Programacion}"+
-                $" manteria 2: {Asignaturas.Matematicas}"+
-                $" manteria 2: {Asignaturas.Literatura}");
+            return ($"MATERIAS\n manteria 1: {Asignaturas.Ingles}\n" +
+                $" manteria 2: {Asignaturas.Programacion}\n" +
+                $" manteria 2: {Asignaturas.Matematicas}\n" +
+                $" manteria 2: {Asignaturas.Literatura}\n");
         }
+        public EstadoAsignatura EstadoAsignatur ()
+        {
+            return EstadoAsignatura;
+           
+        }
+        #endregion
 
     }
 }
