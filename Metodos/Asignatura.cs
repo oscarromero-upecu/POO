@@ -5,7 +5,7 @@ using System;
 
 namespace POO.Repositorio
 {
-    public class Asignatura : IAsignatura
+    public abstract class Asignatura : IAsignatura
     {
         //CAMPOS
         #region CAMPOS

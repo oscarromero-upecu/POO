@@ -2,6 +2,7 @@
 using POO.Metodos;
 using POO.Repositorio;
 using System;
+using System.Collections.Generic;
 
 namespace POO
 {
@@ -26,9 +27,26 @@ namespace POO
                 Console.WriteLine(materias.TraerAsignaturas());
 
                 Curso curso = new Curso(Paralelos.A, 2);
-                Console.WriteLine(curso.ImprimirCurso());
+                Console.WriteLine(curso.TraerCurso());
                 curso.Saludos();
 
+                //POLIMORFISMO
+                Asignatura estudiante = new Estudiante();
+                Asignatura cursoestudiante = new Curso();
+                //INSTANCIA NUEVA LISTA
+                List<Asignatura> asignaturas = new List<Asignatura>();
+                asignaturas.Add(estudiante);
+                asignaturas.Add(cursoestudiante);
+
+                //FOREACH
+                foreach (var asignatura in asignaturas)
+                {
+                    if (asignatura is Estudiante)
+                        //CASTEAR, CONVIERTE UN TIPO DE DATO ESPECIFICO A OTRO
+                        ((Estudiante)asignatura).TraerAsignaturas();
+                    else
+                        ((Curso)asignatura).TraerCurso();
+                }
 
                 //ACCEDE AL METODO STATICO SIN INSTANCIAR LA CLASE
                 Estudiante.ImprimirValoresConstantes();

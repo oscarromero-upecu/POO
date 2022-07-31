@@ -62,7 +62,7 @@ namespace POO.Metodos
         //METODOS
         #region METODOS
         // TRAE EL METODO DE LA INTERFAZ
-        public string ImprimirCurso()
+        public string TraerCurso()
         {
             return ($"Te da la bienvenida \n" +
                 $" Paralelo: {Paralelos.C}" +
